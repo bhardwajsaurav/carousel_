@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+</head>
+
+
+<style>
+    @import "https://fonts.googleapis.com/css?family=Open+Sans:800&display=swap";
+
+
+    .carousel-wrapper {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carousel {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  width: auto;
+  max-width: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 0;
+
+  overflow-x: hidden;
+  align-items: stretch;
+  touch-action: pan-x;
+  border-radius: 4px;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.slider-control {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  background-color: #fff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: box-shadow 0.12s ease;
+}
+.slider-control.arrow-right {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+.slider-control.arrow-left {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+.slider-control:not(:disabled) {
+  cursor: pointer;
+}
+.slider-control:not(:disabled):hover, .slider-control:not(:disabled):focus {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.slider-control:not(:disabled):active {
+  background-color: #f1f1f1;
+}
+.slider-control:disabled {
+  cursor: not-allowed;
+}
+.slider-control.hide {
+  display: none;
+}
+
+.slide {
+  display: inline-flex;
+  min-width: 100%;
+  height: 360px;
+  margin-right: 20px;
+  font-size: 20vw;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  
+  border-radius: 8px;
+  background-color: #fff;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide span {
+  display: block;
+  text-align: center;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  line-height: 1;
+  user-select: none;
+}
+.slide.has-image {
+  color: #fff;
+}
+.slide.has-image span {
+  color: #fff;
+}
+.slide:last-child {
+  margin-right: 0;
+}
+@media screen and (min-width: 577px) {
+  .slide {
+    min-width: calc(50% - 10px);
+    font-size: 20vw;
+  }
+}
+@media screen and (min-width: 769px) {
+  .slide {
+    min-width: calc(33.3333333333% - 13.3333333333px);
+    font-size: 16vw;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .slide {
+    min-width:  calc(19% - 8px);
+    font-size: 12vw;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .slide {
+    font-size: 180px;
+  }
+}
+
+.carousel-Main
+{
+  position: relative;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+}
+
+.cross-site{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 25px;
+  color: white;
+}
+
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 30%);
+  display: none;
+}
+ 
+
+div#Slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<body>
+
+
+
+
+
+
+  <section class="carousel-Main">
+
+     <div class="carousel-wrapper">
+    <div class="carousel">
+      <div class="slider" id="slider" tabindex="0">
+        <div class="slide img_carousel1" onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel1"  onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel1"  onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel1"  onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel1"  onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel2" onclick="carousel1(this)" ><img src="" alt=""></div>
+        <div class="slide img_carousel2" onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel2"onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel2"onclick="carousel1(this)"><img src="" alt=""></div>
+        <div class="slide img_carousel2"onclick="carousel1(this)"><img src="" alt=""></div>
+       
+      </div>
+      <button class="slider-control arrow-left hide" id="btn-prev"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <polyline points="15 6 9 12 15 18"></polyline>
+        </svg></button>
+      <button class="slider-control arrow-right" id="btn-next"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <polyline points="9 6 15 12 9 18"></polyline>
+        </svg></button>
+    </div>
+  </div>
+  </section>
+
+
+<div class="overlay">
+  
+       
+            <div id="Slider">
+                <img src  id="f1" class="frame">
+                <img src id="f2" class="frame">
+                <img src id="f3" class="frame">
+                <img src id="f4" class="frame">
+                <img src  id="f5" class="frame">
+            </div>
+
+
+
+            <i class="fa-solid fa-circle-xmark cross-site" onclick="cross_site()"></i>
+        
+      
+</div>
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+
+</script>
+
+<script src="https://unpkg.com/easy-scroll"> </script>
+
+    <script>
+
+const sliderUI = {
+  slider: document.getElementById("slider"),
+  slides: document.querySelectorAll(".slide"),
+  controls: {
+    prevBtn: document.getElementById("btn-prev"),
+    nextBtn: document.getElementById("btn-next")
+  }
+};
+
+let sliderController = {
+  isMouseDown: false,
+  startPosX: 0,
+  scrollLeft: sliderUI.slider.offsetLeft,
+  goNext() {
+    let _scrollBy = Math.round(
+      sliderUI.slider.offsetWidth +
+        20 -
+        (sliderUI.slider.scrollLeft % (sliderUI.slides[0].offsetWidth + 20))
+    );
+
+    easyScroll({
+      scrollableDomEle: sliderUI.slider,
+      direction: "right",
+      duration: 200,
+      easingPreset: "easeInQuad",
+      scrollAmount: _scrollBy
+    });
+  },
+  goPrev() {
+    let _scrollBy =
+      Math.round(sliderUI.slider.offsetWidth + 20) -
+      (Math.round(sliderUI.slides[0].offsetWidth + 20) -
+        (sliderUI.slider.scrollLeft %
+          Math.round(sliderUI.slides[0].offsetWidth + 20)));
+
+    easyScroll({
+      scrollableDomEle: sliderUI.slider,
+      direction: "left",
+      duration: 200,
+      easingPreset: "easeInQuad",
+      scrollAmount: _scrollBy
+    });
+  }
+};
+
+sliderUI.controls.nextBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  sliderController.goNext();
+});
+
+sliderUI.controls.prevBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  sliderController.goPrev();
+});
+
+sliderUI.slider.addEventListener("wheel", (event) => {
+  event.stopPropagation();
+  sliderUI.slider.scrollLeft -= event.wheelDeltaX;
+});
+
+sliderUI.slider.addEventListener("scroll", (event) => {
+  if (
+    sliderUI.slider.offsetWidth + sliderUI.slider.scrollLeft + 1 >
+    sliderUI.slider.scrollWidth
+  ) {
+    sliderUI.controls.nextBtn.classList.add("hide");
+    if (document.activeElement.id === sliderUI.controls.nextBtn.id) {
+      sliderUI.controls.prevBtn.focus();
+    }
+  } else {
+    sliderUI.controls.nextBtn.classList.remove("hide");
+  }
+
+  if (sliderUI.slider.scrollLeft - 1 < 0) {
+    sliderUI.controls.prevBtn.classList.add("hide");
+    if (document.activeElement.id === sliderUI.controls.prevBtn.id) {
+      sliderUI.controls.nextBtn.focus();
+    }
+  } else {
+    sliderUI.controls.prevBtn.classList.remove("hide");
+  }
+});
+
+sliderUI.slider.addEventListener("mousedown", (event) => {
+  sliderController.isMouseDown = true;
+  sliderController.scrollLeft = sliderUI.slider.scrollLeft;
+  sliderController.startPosX = event.pageX - sliderUI.slider.offsetLeft;
+});
+
+sliderUI.slider.addEventListener("mousemove", (event) => {
+  if (!sliderController.isMouseDown) return;
+  let _x = event.pageX - sliderUI.slider.offsetLeft;
+  let _xChange = _x - sliderController.startPosX;
+  sliderUI.slider.scrollLeft = sliderController.scrollLeft - _xChange;
+});
+
+sliderUI.slider.addEventListener("mouseup", (event) => {
+  sliderController.isMouseDown = false;
+});
+
+sliderUI.slider.addEventListener("mouseleave", (event) => {
+  sliderController.isMouseDown = false;
+});
+
+sliderUI.slider.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft") {
+    sliderController.goPrev();
+  }
+  if (event.key === "ArrowRight") {
+    sliderController.goNext();
+  }
+});
+
+sliderUI.slider.addEventListener("touchstart", (event) => {
+  sliderController.isMouseDown = true;
+  sliderController.scrollLeft = sliderUI.slider.scrollLeft;
+  sliderController.startPosX = event.pageX - sliderUI.slider.offsetLeft;
+});
+
+let images = [
+  "https://images.unsplash.com/photo-1653376813085-9ce473ec934e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1618004912476-29818d81ae2e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1620207418302-439b387441b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1618556450991-2f1af64e8191?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1653376813085-21121b1401ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1653376813100-18f874451db1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1652195598569-f523c6973b42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
+  "https://images.unsplash.com/photo-1653383726851-46c29be94b3b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
+];
+
+sliderUI.slides.forEach((slide, index) => {
+  let img = new Image();
+  img.onload = (a) => {
+    slide.childNodes[0].src = `${images[index]}`
+    // slide.style.backgroundImage = ;
+    // slide.classList.add("has-image");
+  };
+  img.src = images[index];
+});
+
+    </script>
+
+
+
+<script>
+    // Created By https://github.com/samanazadi1996
+
+HTMLElement.prototype.InitSlider = function (options = null) {
+  var sliderIndex = 2;
+  this.style.height = "100%";
+  var model = [
+    { zIndex: 0, left: "30%" },
+    { zIndex: 1, left: "40%" },
+    { zIndex: 2, left: "50%" },
+    { zIndex: 1, left: "60%" },
+    { zIndex: 0, left: "70%" }
+  ];
+  const setPosition = (tempModel, img, index) => {
+    img.style.zIndex = tempModel[index].zIndex;
+    img.style.transform = `translateX(-50%) scale(${
+      0.6 + tempModel[index].zIndex * 0.2
+    })`;
+    img.style.left = tempModel[index].left;
+    tempModel[index].zIndex != 2
+      ? (img.style.filter = options?.filter ?? "blur(1px)")
+      : (img.style.filter = null);
+  };
+  const gotoNext = () => {
+    if (++sliderIndex == 5) sliderIndex = 0;
+    this.children[sliderIndex].click();
+  };
+  const gotoBack = () => {
+    if (--sliderIndex == -1) sliderIndex = 4;
+    this.children[sliderIndex].click();
+  };
+
+  var count = this.childElementCount;
+  for (let index = 0; index < count; index++) {
+    var image = this.children[index];
+    setPosition(model, image, index);
+    image.style.width = "300px";
+    image.style.height = "77%";
+    image.style.padding = "4px";
+    image.style.borderRadius = "6px";
+    image.style.position = "absolute";
+    image.style.transition = "1s";
+    image.onclick = function () {
+      sliderIndex = index;
+      const arrNew = [...model];
+      var shifts = index + 3;
+      if (shifts > 4) shifts -= 5;
+
+      for (let i = 0; i < shifts; i++) arrNew.unshift(arrNew.pop());
+
+      for (let findex = 0; findex < count; findex++)
+        setPosition(arrNew, this.parentNode.children[findex], findex);
+    };
+  }
+  setInterval(() => {
+    if (options?.timerEnable ?? true)
+      options?.slider?.toLowerCase()?.trim() == "gotoback"
+        ? gotoBack()
+        : gotoNext();
+  }, options?.timerInterval ?? 50000000000000);
+};
+
+document.getElementById("Slider").InitSlider({
+  timerInterval: 3000,
+  timerEnable: true,
+  
+  slider: "gotoBack"
+});
+
+</script>
+
+
+<script>
+
+     function carousel1(e){
+        
+        document.getElementsByClassName("overlay")[0].style.display = "block"
+
+        for (let j= 0; j < document.getElementsByClassName("activE").length; j++) {
+          const element3 = document.getElementsByClassName("activE")[j];
+          element3.classList.remove("activE")
+          
+        }
+       
+        if (e.className.split(" ")[1] === "img_carousel1" ) {
+            // document.getElementById("f3").src = e.childNodes[1].src
+            e.classList.add("activE")
+            document.getElementById("f3").classList.add("activE")
+
+            for (let index = 0; index < document.getElementsByClassName("img_carousel1").length; index++) {
+                const element = document.getElementsByClassName("img_carousel1")[index]
+                const element2 =  document.getElementsByClassName("frame")[index];
+
+                let split1 = element.childNodes[0]
+                console.log(split1.src)
+                element2.src = split1.src
+              
+        }
+
+        
+         
+     } 
+
+
+
+     if (e.className.split(" ")[1] === "img_carousel2" ) {
+            // document.getElementById("f3").src = e.childNodes[1].src
+            e.classList.add("activE")
+            document.getElementById("f3").classList.add("activE")
+
+            for (let index = 0; index < document.getElementsByClassName("img_carousel2").length; index++) {
+                const element = document.getElementsByClassName("img_carousel2")[index]
+                const element2 =  document.getElementsByClassName("frame")[index];
+
+                let split1 = element.childNodes[0]
+                console.log(split1.src)
+                element2.src = split1.src
+              
+        }
+
+        
+         
+     } 
+    }
+
+
+    function cross_site(){
+      document.getElementsByClassName("overlay")[0].style.display = "none"
+    }
+</script>
+    
+</body>
+</html>
